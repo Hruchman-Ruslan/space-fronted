@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Roboto } from "next/font/google";
+
 import "./globals.css";
+
+const font = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Space",
@@ -13,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={font.className}>{children}</body>
     </html>
   );
 }
