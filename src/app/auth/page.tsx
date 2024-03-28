@@ -2,6 +2,10 @@
 
 import React, { useState } from "react";
 
+import Form from "../components/form";
+import Input from "../components/input";
+import Button from "../components/button";
+
 export interface PageProps {}
 
 export default function Page({}: PageProps) {
@@ -33,7 +37,12 @@ export default function Page({}: PageProps) {
         body: JSON.stringify({ name, email, password }),
       });
 
-      console.log(response, "Authentication successful");
+      const data = await response.json();
+      console.log(data, "Authentication successful");
+
+      setName("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
       console.error("Network error:", error);
     }
@@ -41,31 +50,28 @@ export default function Page({}: PageProps) {
 
   return (
     <section>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="name" onChange={onChangeName} value={name} />
-        </label>
-        <label>
-          Email:
-          <input
-            type="text"
-            name="email"
-            value={email}
-            onChange={onChangeEmail}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={onChangePassword}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
+      <Form onSubmit={handleSubmit}>
+        <Input
+          id="name"
+          onChange={onChangeName}
+          value={name}
+          placeholder="Name"
+        ></Input>
+        <Input
+          id="email"
+          onChange={onChangeEmail}
+          value={email}
+          placeholder="Email"
+        ></Input>
+        <Input
+          id="password"
+          type="password"
+          onChange={onChangePassword}
+          value={password}
+          placeholder="Password"
+        ></Input>
+        <Button type="submit">Submit</Button>
+      </Form>
     </section>
   );
 }
