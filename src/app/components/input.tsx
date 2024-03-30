@@ -1,6 +1,7 @@
 import React, { InputHTMLAttributes, ReactNode } from "react";
 
-export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends Partial<InputHTMLAttributes<HTMLInputElement>> {
   id: string;
   children?: ReactNode;
 }
