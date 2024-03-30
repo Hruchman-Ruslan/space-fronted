@@ -6,9 +6,9 @@ import Form from "../../components/form";
 import Input from "../../components/input";
 import Button from "../../components/button";
 
-export interface SignUpProps {}
+export interface PageProps {}
 
-export default function SignUp({}: SignUpProps) {
+export default function Page({}: PageProps) {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
