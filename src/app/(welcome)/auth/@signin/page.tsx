@@ -2,9 +2,9 @@
 
 import React, { ChangeEvent, FormEvent, useState } from "react";
 
-import Form from "../../components/form";
-import Input from "../../components/input";
-import Button from "../../components/button";
+import Form from "../../../components/form";
+import Input from "../../../components/input";
+import Button from "../../../components/button";
 
 export interface PageProps {}
 
