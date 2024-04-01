@@ -12,7 +12,7 @@ export default function Button({ onclick, children, ...rest }: ButtonProps) {
       <button
         onClick={onclick}
         {...rest}
-        className="bg-slate-500 text-cyan-300 py-2 rounded-xl"
+        className="bg-slate-500 text-cyan-300 px-6 py-2 rounded-xl"
       >
         {children}
       </button>
