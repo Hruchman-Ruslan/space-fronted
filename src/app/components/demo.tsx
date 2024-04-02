@@ -1,10 +1,15 @@
-import React from "react";
+import React, { CSSProperties } from "react";
 
-export interface DemoProps {}
+export interface DemoProps {
+  style?: CSSProperties;
+}
 
-export default function Demo({}: DemoProps) {
+export default function Demo({ style }: DemoProps) {
   return (
-    <div className="w-96 h-96 flex items-center justify-center border-4 border-green-600">
+    <div
+      className="p-20 flex items-center justify-center border-4 border-green-600"
+      style={style}
+    >
       <p>Demo</p>
     </div>
   );
