@@ -32,7 +32,7 @@ export default function Layout({ children, signup, signin }: LayoutProps) {
   return (
     <section className="grid grid-cols-2 grid-rows-2 justify-center items-center gap-10">
       {children}
-      <div className="flex items-center justify-center gap-10 p-20  border-4 border-red-500">
+      <div className="flex items-center gap-2 justify-center p-14 border-4 border-red-500">
         {!showSignUp && !showSignIn && (
           <Button onClick={handleSignUpClick}>Sign Up</Button>
         )}
