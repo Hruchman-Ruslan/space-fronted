@@ -8,8 +8,8 @@ export default function Page({}: PageProps) {
   return (
     <>
       <Demo />
-      <Demo style={{ visibility: "hidden" }} />
-      <Demo style={{ visibility: "hidden" }} />
+      <Demo />
+      <Demo />
     </>
   );
 }
