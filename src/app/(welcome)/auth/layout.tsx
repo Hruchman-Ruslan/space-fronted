@@ -2,6 +2,7 @@
 
 import React, { ReactNode, useState } from "react";
 import Button from "../../components/button";
+import Video from "../../components/video";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -30,28 +31,31 @@ export default function Layout({ children, signup, signin }: LayoutProps) {
   };
 
   return (
-    <section className="grid grid-cols-2 grid-rows-2 justify-center items-center gap-10">
-      {children}
-      <div className="flex items-center gap-2 justify-center p-14 border-4 border-red-500">
-        {!showSignUp && !showSignIn && (
-          <Button onClick={handleSignUpClick}>Sign Up</Button>
-        )}
-        {!showSignIn && !showSignUp && (
-          <Button onClick={handleSignInClick}>Sign In</Button>
-        )}
-        {showSignUp && (
-          <>
-            <Button onClick={handleCancelSignUp}>Back</Button>
-            <div>{signup}</div>
-          </>
-        )}
-        {showSignIn && (
-          <>
-            <Button onClick={handleCancelSignIn}>Back</Button>
-            <div>{signin}</div>
-          </>
-        )}
-      </div>
-    </section>
+    <>
+      <Video src="/auth.mp4" />
+      <section className="grid grid-cols-2 grid-rows-2 justify-center items-center gap-40 relative">
+        {children}
+        <div className="flex items-center gap-2 justify-center p-14 border-2 border-slate-700">
+          {!showSignUp && !showSignIn && (
+            <Button onClick={handleSignUpClick}>Sign Up</Button>
+          )}
+          {!showSignIn && !showSignUp && (
+            <Button onClick={handleSignInClick}>Sign In</Button>
+          )}
+          {showSignUp && (
+            <>
+              <Button onClick={handleCancelSignUp}>Back</Button>
+              <div>{signup}</div>
+            </>
+          )}
+          {showSignIn && (
+            <>
+              <Button onClick={handleCancelSignIn}>Back</Button>
+              <div>{signin}</div>
+            </>
+          )}
+        </div>
+      </section>
+    </>
   );
 }
