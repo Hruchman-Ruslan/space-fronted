@@ -33,26 +33,30 @@ export default function Layout({ children, signup, signin }: LayoutProps) {
   return (
     <>
       <Video src="/auth.mp4" />
-      <section className="grid grid-cols-2 grid-rows-2 justify-center items-center gap-40 relative">
+      <section className="w-full h-dvh grid grid-cols-2 grid-rows-2 justify-center items-center gap-40 relative">
         {children}
-        <div className="flex items-center gap-2 justify-center p-14 border-2 border-slate-700">
+        <div className="flex items-center gap-10 justify-center p-2">
           {!showSignUp && !showSignIn && (
-            <Button onClick={handleSignUpClick}>Sign Up</Button>
+            <Button onClick={handleSignUpClick} twClass="w-40">
+              Sign Up
+            </Button>
           )}
           {!showSignIn && !showSignUp && (
-            <Button onClick={handleSignInClick}>Sign In</Button>
+            <Button onClick={handleSignInClick} twClass="w-40">
+              Sign In
+            </Button>
           )}
           {showSignUp && (
-            <>
+            <div className="flex gap-4">
               <Button onClick={handleCancelSignUp}>Back</Button>
               <div>{signup}</div>
-            </>
+            </div>
           )}
           {showSignIn && (
-            <>
+            <div className="flex gap-4">
               <Button onClick={handleCancelSignIn}>Back</Button>
               <div>{signin}</div>
-            </>
+            </div>
           )}
         </div>
       </section>
