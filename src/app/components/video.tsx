@@ -17,7 +17,7 @@ export default function Video({ src }: VideoProps) {
       >
         <source src={src} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-br from-black to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-tr from-transparent from-30% via-indigo-700 via-50% to-transparent to-70%"></div>
     </>
   );
 }

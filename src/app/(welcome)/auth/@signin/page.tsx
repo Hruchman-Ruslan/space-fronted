@@ -43,23 +43,21 @@ export default function Page({}: PageProps) {
   };
 
   return (
-    <section>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          id="email"
-          placeholder="Email"
-          onChange={onChangeEmail}
-          value={email}
-        />
-        <Input
-          id="password"
-          placeholder="Password"
-          type="password"
-          onChange={onChangePassword}
-          value={password}
-        />
-        <Button type="submit">Sign In</Button>
-      </Form>
-    </section>
+    <Form onSubmit={handleSubmit}>
+      <Input
+        id="email"
+        placeholder="Email"
+        onChange={onChangeEmail}
+        value={email}
+      />
+      <Input
+        id="password"
+        placeholder="Password"
+        type="password"
+        onChange={onChangePassword}
+        value={password}
+      />
+      <Button type="submit">Sign In</Button>
+    </Form>
   );
 }

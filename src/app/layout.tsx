@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
-import { Roboto } from "next/font/google";
+import { EB_Garamond } from "next/font/google";
 
 import "./globals.css";
 
-const font = Roboto({
-  weight: "700",
+const font = EB_Garamond({
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
 });
 
