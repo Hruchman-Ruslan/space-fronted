@@ -15,7 +15,7 @@ export default function Input({ id, children, ...rest }: InputProps) {
           type="text"
           id={id}
           {...rest}
-          className="px-3 py-2 rounded-xl bg-transparent border-dashed border-2 border-sky-500 hover:animate-pulse"
+          className="px-3 py-2 rounded-xl bg-transparent border-dashed border-2 border-sky-500 animate-pulse"
         />
       </label>
     </>
