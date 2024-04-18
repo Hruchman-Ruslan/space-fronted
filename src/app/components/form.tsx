@@ -7,10 +7,8 @@ export interface FormProps
 
 export default function Form({ children, ...rest }: FormProps) {
   return (
-    <>
-      <form autoComplete="off" {...rest} className="flex flex-col gap-3">
-        {children}
-      </form>
-    </>
+    <form autoComplete="off" {...rest} className="flex flex-col gap-3">
+      {children}
+    </form>
   );
 }
