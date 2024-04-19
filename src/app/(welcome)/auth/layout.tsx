@@ -3,6 +3,7 @@
 import React, { ReactNode, useState } from "react";
 import Button from "../../components/button";
 import Video from "../../components/video";
+import { AuthProvider } from "../../context/authContext";
 
 export interface LayoutProps {
   children: ReactNode;
@@ -49,13 +50,17 @@ export default function Layout({ children, signup, signin }: LayoutProps) {
           {showSignUp && (
             <div className="flex gap-4">
               <Button onClick={handleCancelSignUp}>Back</Button>
-              <div>{signup}</div>
+              <div>
+                <AuthProvider>{signup}</AuthProvider>
+              </div>
             </div>
           )}
           {showSignIn && (
             <div className="flex gap-4">
               <Button onClick={handleCancelSignIn}>Back</Button>
-              <div>{signin}</div>
+              <div>
+                <AuthProvider>{signin}</AuthProvider>
+              </div>
             </div>
           )}
         </div>

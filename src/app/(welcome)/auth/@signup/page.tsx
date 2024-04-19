@@ -1,51 +1,46 @@
 "use client";
 
-import React, { useState } from "react";
+import { ChangeEvent, FormEvent } from "react";
+
+import { useAuth } from "../../../context/useAuth";
 
 import Form from "../../../components/form";
 import Input from "../../../components/input";
 import Button from "../../../components/button";
 
-export interface PageProps {}
+export interface SignUpPageProps {}
 
-export default function Page({}: PageProps) {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+export default function SignUpPage({}: SignUpPageProps) {
+  const {
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    handleSignUp,
+  } = useAuth();
 
-  const onChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
 
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:3030/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
+    handleSignUp(name, email, password);
 
-      const data = await response.json();
-      console.log(data, "Authentication successful");
-
-      setName("");
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      console.error("Network error:", error);
-    }
+    setName("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
