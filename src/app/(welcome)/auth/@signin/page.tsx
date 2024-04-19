@@ -1,16 +1,17 @@
 "use client";
 
-import React, { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent } from "react";
+
+import { useAuth } from "../../../context/useAuth";
 
 import Form from "../../../components/form";
 import Input from "../../../components/input";
 import Button from "../../../components/button";
 
-export interface PageProps {}
+export interface SignInPageProps {}
 
-export default function Page({}: PageProps) {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+export default function SignInPage({}: SignInPageProps) {
+  const { email, password, setEmail, setPassword, handleSignIn } = useAuth();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -20,26 +21,13 @@ export default function Page({}: PageProps) {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:3030/users/signin", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+    handleSignIn(email, password);
 
-      const data = await response.json();
-      console.log(data, "Authorization successful");
-
-      setEmail("");
-      setPassword("");
-    } catch (error) {
-      console.error("Network error:", error);
-    }
+    setEmail("");
+    setPassword("");
   };
 
   return (
