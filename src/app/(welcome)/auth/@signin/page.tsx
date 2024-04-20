@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent } from "react";
 
 import { useAuth } from "../../../context/useAuth";
+import { useHooks } from "../../../hooks/hooks";
 
 import Form from "../../../components/form";
 import Input from "../../../components/input";
@@ -12,6 +13,7 @@ export interface SignInPageProps {}
 
 export default function SignInPage({}: SignInPageProps) {
   const { email, password, setEmail, setPassword, handleSignIn } = useAuth();
+  const { router } = useHooks();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
@@ -25,6 +27,7 @@ export default function SignInPage({}: SignInPageProps) {
     e.preventDefault();
 
     handleSignIn(email, password);
+    router.push("/main");
 
     setEmail("");
     setPassword("");
