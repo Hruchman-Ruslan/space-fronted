@@ -13,7 +13,7 @@ export const callApi = async (url: string, options: RequestInit) => {
 };
 
 export const signUp = async (name: string, email: string, password: string) => {
-  const data = await callApi("http://localhost:3030/users/signup", {
+  const response = await callApi("http://localhost:3030/users/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,11 +21,11 @@ export const signUp = async (name: string, email: string, password: string) => {
     body: JSON.stringify({ name, email, password }),
   });
 
-  return data;
+  return response;
 };
 
 export const signIn = async (email: string, password: string) => {
-  const data = await callApi("http://localhost:3030/users/signin", {
+  const response = await callApi("http://localhost:3030/users/signin", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -33,5 +33,6 @@ export const signIn = async (email: string, password: string) => {
     body: JSON.stringify({ email, password }),
   });
 
-  return data;
+  console.log(response);
+  return response;
 };

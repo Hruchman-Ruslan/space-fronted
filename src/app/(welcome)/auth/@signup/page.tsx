@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent } from "react";
 
 import { useAuth } from "../../../context/useAuth";
+import { useHooks } from "../../../hooks/hooks";
 
 import Form from "../../../components/form";
 import Input from "../../../components/input";
@@ -20,6 +21,7 @@ export default function SignUpPage({}: SignUpPageProps) {
     setPassword,
     handleSignUp,
   } = useAuth();
+  const { router } = useHooks();
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
@@ -37,6 +39,7 @@ export default function SignUpPage({}: SignUpPageProps) {
     e.preventDefault();
 
     handleSignUp(name, email, password);
+    router.push("/main");
 
     setName("");
     setEmail("");
