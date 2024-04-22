@@ -1,18 +1,22 @@
 "use client";
 
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import { useAuth } from "../../../context/useAuth";
 import { useHooks } from "../../../hooks/hooks";
+import { handleApiError, signIn } from "../../../api";
 
 import Form from "../../../components/form";
 import Input from "../../../components/input";
 import Button from "../../../components/button";
 
-export interface SignInPageProps {}
+export interface LoginPageProps {}
 
-export default function SignInPage({}: SignInPageProps) {
-  const { email, password, setEmail, setPassword, handleSignIn } = useAuth();
+export default function SignInPage({}: LoginPageProps) {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const { setUser } = useAuth();
   const { router } = useHooks();
 
   const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
@@ -23,14 +27,19 @@ export default function SignInPage({}: SignInPageProps) {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    handleSignIn(email, password);
-    router.push("/main");
+    try {
+      const findUser = await signIn(email, password);
+      setUser(findUser);
+      router.push("/main");
 
-    setEmail("");
-    setPassword("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      handleApiError(error);
+    }
   };
 
   return (

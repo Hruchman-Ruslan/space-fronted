@@ -1,9 +1,10 @@
 "use client";
 
-import { ChangeEvent, FormEvent } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 import { useAuth } from "../../../context/useAuth";
 import { useHooks } from "../../../hooks/hooks";
+import { handleApiError, signUp } from "../../../api";
 
 import Form from "../../../components/form";
 import Input from "../../../components/input";
@@ -12,15 +13,11 @@ import Button from "../../../components/button";
 export interface SignUpPageProps {}
 
 export default function SignUpPage({}: SignUpPageProps) {
-  const {
-    name,
-    email,
-    password,
-    setName,
-    setEmail,
-    setPassword,
-    handleSignUp,
-  } = useAuth();
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const { setUser } = useAuth();
   const { router } = useHooks();
 
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
@@ -35,15 +32,20 @@ export default function SignUpPage({}: SignUpPageProps) {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    handleSignUp(name, email, password);
-    router.push("/main");
+    try {
+      const createUser = await signUp(name, email, password);
+      setUser(createUser);
+      router.push("/main");
 
-    setName("");
-    setEmail("");
-    setPassword("");
+      setName("");
+      setEmail("");
+      setPassword("");
+    } catch (error) {
+      handleApiError(error);
+    }
   };
 
   return (

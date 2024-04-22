@@ -21,6 +21,8 @@ export const signUp = async (name: string, email: string, password: string) => {
     body: JSON.stringify({ name, email, password }),
   });
 
+  document.cookie = `token=${response.token}`;
+
   return response;
 };
 
@@ -32,6 +34,8 @@ export const signIn = async (email: string, password: string) => {
     },
     body: JSON.stringify({ email, password }),
   });
+
+  document.cookie = `token=${response.token}`;
 
   console.log(response);
   return response;
