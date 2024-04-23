@@ -8,7 +8,7 @@ export interface FullScreenProps {}
 
 export default function FullScreen({}: FullScreenProps) {
   return (
-    <div className="absolute top-10 right-10">
+    <div className="absolute top-10 left-10">
       <Button
         onClick={toggleFullscreen}
         twClass="p-2 bg-transparent from-transparent border-dashed border-2 border-sky-500 animate-pulse"
